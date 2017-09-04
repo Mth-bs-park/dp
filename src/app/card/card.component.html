@@ -1,0 +1,28 @@
+<div class="card-wrap">
+  <div class="card-img-wrap">
+    <img [src]="product.image">
+  </div>
+  <div class="card-content-wrap">
+
+    <span>{{product.id}}</span>
+    <span>{{product.content}}</span>
+    <span>{{product.transform}}</span>
+
+    <!--<span>{{product.user.img}}</span>-->
+    <div class="credit-wrap">
+      <img [src]="product.user.img">
+
+      <div class="credit-user-info">
+        <div>
+          <span>{{product.user.userName}}</span>
+        </div>
+        <div>
+          <span>{{product.user.userId}}</span>
+        </div>
+      </div>
+    </div>
+    <span>{{product.pinCount}}</span>
+  </div>
+</div>
+
+

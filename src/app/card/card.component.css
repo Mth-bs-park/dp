@@ -1,0 +1,35 @@
+.card-wrap {
+  padding: 10px;
+
+}
+
+.card-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.credit-wrap {
+  flex: 1;
+}
+
+.credit-wrap > img{
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.credit-user-info {
+  display: inline-block;
+}
+
+.credit-user-info > div {
+  line-height: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.credit-user-info > div > span{
+  font-size: 10px;
+  color: #555;
+}
