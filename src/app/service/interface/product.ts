@@ -1,8 +1,9 @@
+import { Image } from  './image';
 import { User } from  './user';
 
-export class Product {
+export interface Product {
   id: number;
-  image: string;
+  image: Image;
   content: string;
   tag: Array<string>;
 

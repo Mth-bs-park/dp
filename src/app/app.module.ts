@@ -10,6 +10,7 @@ import { FloatButtonComponent } from './float-button/float-button.component';
 import { GridContentComponent } from './grid-content/grid-content.component';
 
 import { ProductService } from './service/product.service';
+import { CardItemService } from './service/card-item.service';
 import { CardComponent } from './card/card.component';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { CardComponent } from './card/card.component';
     FormsModule,
     HttpModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, CardItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

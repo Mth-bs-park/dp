@@ -1,34 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Product } from './interface/product';
+import { Position } from './interface/position';
 import { User } from './interface/user';
 import { Image } from './interface/image';
+import { CardItem } from './interface/cardItem';
 
-import 'rxjs/add/operator/toPromise';
 @Injectable()
-export class ProductService {
+export class CardItemService {
 
   constructor() { }
 
-  getProducts(): Promise<Array<Product>> {
-    const products: Array<Product> = this._makeProduct();
+  getCardItems(count): Promise<Array<CardItem>> {
+    const cardItems: Array<CardItem> = this._makeCardItems(count);
 
-    return Promise.resolve(products);
+    return Promise.resolve(cardItems);
   }
 
-  _makeProduct(): Array<Product> {
+  _makeCardItems(count): Array<CardItem> {
+    const result: Array<CardItem> = [];
 
-    let result: Array<Product> = [];
+    for (let i = 0; i < count; i++) {
 
-    for (var i = 0; i < 20; i++){
-
-      result.push({
+      const product: Product = {
         id: i + 1,
         image: this._getRandomImage(),
         content: `${i}`,
         tag: [`${i}`],
         user: this._getRandomUser(),
         pinCount: this._getRandomPinCount()
-      });
+      };
+
+      result.push({
+        product,
+        position: null
+      })
     }
 
     return result;
@@ -108,4 +113,5 @@ export class ProductService {
   _getRandomNumber(max): number {
     return Math.floor(Math.random() * max);
   }
+
 }

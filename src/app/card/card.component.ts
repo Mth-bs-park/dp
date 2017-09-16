@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../service/product';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { CardItem } from '../service/interface/cardItem';
 @Component({
   selector: 'card-item',
   templateUrl: './card.component.html',
@@ -7,13 +7,14 @@ import { Product } from '../service/product';
 })
 export class CardComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() item: CardItem;
+  @ViewChild('test') test: any;
 
   constructor() { }
 
   ngOnInit() {
 
-    console.log(this.product);
+    console.log(this.item, this.test);
 
   }
 
