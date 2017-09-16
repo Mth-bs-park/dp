@@ -1,9 +1,13 @@
 .grid-content{
-  padding: 24px 18px 0;
+  /*padding: 24px 18px 0;*/
   margin: 0 auto;
 }
 
-.grid-content>.list{
+.grid-content > .list-wrap {
+  padding-top: 24px;
+}
+
+.grid-content > .list-wrap > .list{
   position:relative;
 }
 
@@ -17,4 +21,55 @@
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
   transition: transform .2s,-webkit-transform .2s;
+}
+
+
+@media (max-width: 1039px) and (min-width: 0px){
+  .grid-content {
+    width: 780px;
+  }
+}
+
+@media (max-width: 1299px) and (min-width: 1040px){
+  .grid-content {
+    width: 1040px;
+  }
+}
+
+@media (max-width: 1559px) and (min-width: 1300px){
+  .grid-content {
+    width: 1300px;
+  }
+}
+
+@media (max-width: 1819px) and (min-width: 1560px){
+  .grid-content {
+    width: 1560px;
+  }
+}
+
+
+@media (max-width: 1859px) and (min-width: 1600px){
+  .grid-content {
+    width: 1300px;
+  }
+}
+
+@media (max-width: 2079px) and (min-width: 1820px){
+  .grid-content {
+    width: 1820px;
+  }
+}
+
+
+@media (max-width: 2339px) and (min-width: 2080px){
+  .grid-content {
+    width: 2080px;
+  }
+}
+
+@media (max-width: 2859px) and (min-width: 2600px){
+  .gridCentered {
+    width: 2600px;
+  }
 }
