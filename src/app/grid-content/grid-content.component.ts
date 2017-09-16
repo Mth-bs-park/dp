@@ -1,8 +1,9 @@
-import { Component, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewChecked, HostListener } from '@angular/core';
 
 import { CardItemService } from '../service/card-item.service';
 import { CardItem } from '../service/interface/cardItem';
 
+declare var $:any;
 
 @Component({
   selector: 'app-grid-content',
@@ -46,6 +47,14 @@ export class GridContentComponent implements OnInit {
     this.isBeforeCalculatePosition = true;
     const maxPosition = this.getMaxValue(this.columnPositionYArray);
     this.content.nativeElement.style.height = `${maxPosition}px`;
+
+    var children = Array.from(this.content.nativeElement.children);
+
+    setTimeout(()=> {
+      children.map((node)=>{
+        $(node).get(0).children[0].classList.add('animate');
+      });
+    });
   }
 
   set column(column) {
@@ -58,7 +67,7 @@ export class GridContentComponent implements OnInit {
 
   calculateColumn(): number {
     const width = window.innerWidth;
-    let column = Math.round(width / this.cardWidth);
+    let column = Math.floor(width / this.cardWidth);
     if (column < this.minColumn) column = this.minColumn;
     return column;
   }
@@ -96,5 +105,16 @@ export class GridContentComponent implements OnInit {
 
   getMaxValue(array): number {
     return Math.max(...array);
+  }
+
+  /**
+   * resize
+   */
+  @HostListener('window:resize')
+  onResize(): void {
+    if (this.column === this.calculateColumn()) return;
+    this.column = this.calculateColumn();
+    this.initColumnPositionYArray();
+    this.calcPosition();
   }
 }

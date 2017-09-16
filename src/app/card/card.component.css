@@ -3,6 +3,14 @@
   position: absolute;
 }
 
+.animate{
+  transition: -webkit-transform .2s;
+  -webkit-transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  transition: transform .2s,-webkit-transform .2s;
+}
+
 .card-wrap > .card-img-wrap {
   border-radius: 8px;
   overflow: hidden;
