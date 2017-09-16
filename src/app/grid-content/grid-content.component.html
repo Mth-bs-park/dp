@@ -1,0 +1,17 @@
+<div class="grid-content">
+  <div class="list" #content>
+    <div *ngFor="let item of products"
+         class="item item-trans"
+         style="display: inline-block; top: 0; left:0;"
+         [style.background]="item.color"
+         [style.transform]="item.transform">
+
+      <card-item [product]="item"></card-item>
+        <!--<span>{{item.title}} </span>-->
+        <!--<br/>-->
+        <!--<span>{{item.content}}</span>-->
+        <!--<span>{{item.transform}}</span>-->
+        <!--<img [src]="item.image">-->
+    </div>
+  </div>
+</div>
