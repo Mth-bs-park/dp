@@ -10,26 +10,26 @@
       <span>{{item.product.id}}</span>
       <span>{{item.product.content}}</span>
       <span>{{item.product.transform}}</span>
+
     </div>
 
-    <div class="credit-pin-wrap">
-      <div class="credit-wrap">
-        <img [src]="item.product.user.img">
-        <div class="credit-user-info">
-          <div>
-            <span>{{item.product.user.userName}}</span>
-          </div>
-          <div>
-            <span>{{item.product.user.userId}}</span>
-          </div>
+    <div class="credit-wrap">
+      <img [src]="item.product.user.img">
+      <div class="credit-user-info">
+        <div>
+          <span>{{item.product.user.userName}}</span>
+        </div>
+        <div>
+          <span>{{item.product.user.userId}}</span>
         </div>
       </div>
-
-      <div class="pin-wrap">
-        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-        <span>{{item.product.pinCount}}</span>
-      </div>
     </div>
+
+    <div class="pin-wrap">
+      <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+      <span>{{item.product.pinCount}}</span>
+    </div>
+
   </div>
 </div>
 

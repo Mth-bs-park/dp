@@ -19,50 +19,50 @@
 
 
 .card-wrap > .card-meta-wrap {
-
-}
-
-.card-wrap > .card-meta-wrap > .card-meta {
-  max-width: 200px;
-}
-
-.card-wrap > .card-meta-wrap > .credit-pin-wrap {
   position: relative;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .credit-wrap > img{
+.card-wrap > .card-meta-wrap > .card-meta {
+  /*position: relative;*/
+  max-width: 200px;
+}
+
+
+.card-wrap > .card-meta-wrap > .credit-wrap. {
+  position: relative;
+}
+
+.card-wrap > .card-meta-wrap > .credit-wrap > img{
   display: inline-block;
   height: 24px;
   width: 24px;
   vertical-align: inherit;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .credit-wrap. {
-  position: relative;
-}
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .credit-wrap > .credit-user-info {
+
+.card-wrap > .card-meta-wrap > .credit-wrap > .credit-user-info {
   display: inline-block;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .credit-wrap > .credit-user-info > div {
+.card-wrap > .card-meta-wrap > .credit-wrap > .credit-user-info > div {
   line-height: 12px;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .credit-wrap > .credit-user-info > div > span{
+.card-wrap > .card-meta-wrap > .credit-wrap > .credit-user-info{
   font-size: 10px;
   color: #555;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .pin-wrap {
+.card-wrap > .card-meta-wrap > .pin-wrap {
   position: absolute;
   top: 0;
   right: 10px;
 }
 
-.card-wrap > .card-meta-wrap > .credit-pin-wrap > .pin-wrap > * {
+.card-wrap > .card-meta-wrap > .pin-wrap > * {
   font-size: 10px;
   color: #cecece;
 }
