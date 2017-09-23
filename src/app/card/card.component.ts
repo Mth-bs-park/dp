@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, AfterViewChecked, AfterContentChecked} from '@angular/core';
 import { CardItem } from '../service/interface/cardItem';
 import { Position } from '../service/interface/position';
+import { ItemCountService } from '../service/item-count.service';
+
 @Component({
   selector: 'card-item',
   templateUrl: './card.component.html',
@@ -12,9 +14,10 @@ export class CardComponent implements OnInit {
   @Input() item: CardItem;
   @ViewChild('wrap') wrap: any;
   private _previousPosition: Position;
-  constructor() { }
+  constructor(private itemCountService: ItemCountService) { }
 
   ngOnInit() {
+    console.log("call card init");
     this.initPreviousPosition();
   }
 
@@ -23,6 +26,11 @@ export class CardComponent implements OnInit {
       x: -1,
       y: -1
     }
+  }
+
+  onLoad(): void {
+    // console.log('subject update:::');
+    this.itemCountService.update();
   }
 
   set previousPosition(position) {
@@ -34,10 +42,12 @@ export class CardComponent implements OnInit {
   }
 
   // 상위에서 item 에 변경값을 주면서 조작해야 할듯 함.
-  ngAfterContentChecked() {
+  ngAfterViewChecked() {
+
     const position = this.item.position;
+
     if (this.isNull(position) || this.isEqualPreviousPosition(position)) return;
-    // console.log('ngAfterContentChecked', this.item.product.id, position);
+
     const { x, y } = position;
 
     const elem = this.wrap.nativeElement;
@@ -46,7 +56,6 @@ export class CardComponent implements OnInit {
     elem.style.transform = `translate(${x}px, ${y}px)`;
 
     this.previousPosition = position;
-
   }
 
   isNull(position: Position): boolean {

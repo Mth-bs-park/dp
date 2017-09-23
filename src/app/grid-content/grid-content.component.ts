@@ -3,6 +3,10 @@ import { Component, ViewChild, OnInit, AfterViewChecked, HostListener } from '@a
 import { CardItemService } from '../service/card-item.service';
 import { CardItem } from '../service/interface/cardItem';
 
+import { ItemCountService } from '../service/item-count.service';
+
+import { Subscription } from 'rxjs/Subscription';
+
 declare var $:any;
 
 @Component({
@@ -23,25 +27,32 @@ export class GridContentComponent implements OnInit {
 
   private isBeforeCalculatePosition = true;
 
-  constructor(private cardItemService: CardItemService) { }
+  subscription: Subscription;
+
+  private loadItemCount: number = 10;
+
+  constructor(private cardItemService: CardItemService, private itemCountService: ItemCountService) {
+
+    this.subscription = this.itemCountService.getCount().subscribe((value)=>{
+      if(value === this.loadItemCount) {
+        console.log('subscribe complete:::');
+        this.calcPosition();
+      }
+    });
+
+  }
 
   ngOnInit() {
 
     this.column = this.calculateColumn();
     this.initColumnPositionYArray();
 
-    this.cardItemService.getCardItems(10).then(cardItems => {
-      console.log(cardItems);
-
+    this.cardItemService.getCardItems(this.loadItemCount).then(cardItems => {
       this.cardItems = cardItems;
-      setTimeout(()=> {
-        this.calcPosition();
-      });
     });
   }
 
   ngAfterViewChecked() {
-
     if (this.isBeforeCalculatePosition) return;
 
     this.isBeforeCalculatePosition = true;
@@ -78,7 +89,7 @@ export class GridContentComponent implements OnInit {
   }
 
   calcPosition(): void {
-
+    console.log("calc::");
     this.cardItems.map((value, index)=> {
       const minValue = this.getMinValue(this.columnPositionYArray);
       const minIndex = this.columnPositionYArray.indexOf(minValue);
@@ -91,7 +102,10 @@ export class GridContentComponent implements OnInit {
         y: y
       };
 
-      const height = document.getElementsByClassName('card-wrap')[index].clientHeight;
+      const elem = document.getElementsByClassName('card-wrap')[index];
+      const height = elem.clientHeight;
+      // debugger;
+      // console.log(elem, height);
 
       this.columnPositionYArray[minIndex] = y + height;
     });

@@ -2,7 +2,7 @@
      style="visibility: hidden">
 
   <div class="card-img-wrap">
-    <img [src]="item.product.image.url">
+    <img [src]="item.product.image.url" (load)="onLoad()">
   </div>
   <div class="card-meta-wrap">
 
