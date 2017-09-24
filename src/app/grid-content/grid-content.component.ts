@@ -8,6 +8,7 @@ import { ItemCountService } from '../service/item-count.service';
 import { Subscription } from 'rxjs/Subscription';
 
 declare var $:any;
+declare var Math:any;
 
 @Component({
   selector: 'app-grid-content',
@@ -29,10 +30,19 @@ export class GridContentComponent implements OnInit {
 
   subscription: Subscription;
 
+  // 초기 loadItem Count...
   private loadItemCount: number = 10;
+
+  // infinite Scroll 영역에 대한 설정
+  private infiniteScrollDistance: number = 1;
+
+  // getmore items
+
+  private isUsingAboutGetMoreItems: boolean = false;
 
   constructor(private cardItemService: CardItemService, private itemCountService: ItemCountService) {
 
+    // itemCount Subscription
     this.subscription = this.itemCountService.getCount().subscribe((value)=>{
       if(value === this.loadItemCount) {
         console.log('subscribe complete:::');
@@ -40,6 +50,8 @@ export class GridContentComponent implements OnInit {
       }
     });
 
+    // inti infiniteScroll distance
+    this.infiniteScrollDistance = 0.6;
   }
 
   ngOnInit() {
@@ -89,7 +101,6 @@ export class GridContentComponent implements OnInit {
   }
 
   calcPosition(): void {
-    console.log("calc::");
     this.cardItems.map((value, index)=> {
       const minValue = this.getMinValue(this.columnPositionYArray);
       const minIndex = this.columnPositionYArray.indexOf(minValue);
@@ -104,8 +115,6 @@ export class GridContentComponent implements OnInit {
 
       const elem = document.getElementsByClassName('card-wrap')[index];
       const height = elem.clientHeight;
-      // debugger;
-      // console.log(elem, height);
 
       this.columnPositionYArray[minIndex] = y + height;
     });
@@ -130,5 +139,32 @@ export class GridContentComponent implements OnInit {
     this.column = this.calculateColumn();
     this.initColumnPositionYArray();
     this.calcPosition();
+  }
+
+  /**
+   * scroll
+   */
+  @HostListener('window:scroll')
+  onScroll(): void {
+
+  }
+
+  getMaxScrollY(): number {
+    const maxScrollY = $(document).height() - $(window).height();
+    return maxScrollY;
+  }
+
+  isOverInfiniteScrollDistance(): boolean {
+    const currentScrollY = window.pageYOffset;
+    const maxScroll = this.getMaxScrollY();
+    const currentDistance = parseFloat((currentScrollY / maxScroll).toFixed(2));
+
+    const isOver =  this.infiniteScrollDistance < currentDistance;
+
+    return isOver;
+  }
+
+  getMoreItems(): void {
+    
   }
 }

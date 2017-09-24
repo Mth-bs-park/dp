@@ -1,4 +1,4 @@
-<div class="grid-content" (resize)="onResize">
+<div class="grid-content" (resize)="onResize" (scroll)="onScroll">
   <div class="list-wrap">
     <div class="list" #content>
       <card-item *ngFor="let item of cardItems"
